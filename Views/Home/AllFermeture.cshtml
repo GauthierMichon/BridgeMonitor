@@ -1,0 +1,77 @@
+﻿@model List<BridgeModel>
+
+<h1>Toutes les fermetures : </h1>
+
+@{List<BridgeModel> bridge_sort = Model;
+    bridge_sort.Sort((x, y) => DateTimeOffset.Compare(x.closing_date, y.closing_date));
+    List<BridgeModel> tab_past = new List<BridgeModel>();
+    List<BridgeModel> tab_futur = new List<BridgeModel>();
+}
+
+@foreach (var bridge in bridge_sort)
+{
+    var date1 = Convert.ToDateTime(DateTime.Now.ToString());
+    var date2 = Convert.ToDateTime(@bridge.closing_date);
+    int result = DateTime.Compare(date2, date1);
+    if (result == 1)
+    {
+        tab_futur.Add(bridge);
+    }
+    else
+    {
+        tab_past.Add(bridge);
+    }
+}
+
+
+<h2>Fermetures à venir</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom / Event</th>
+            <th>Date et heure Fermeture</th>
+            <th>Durée de la fermeture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bridge in tab_futur)
+        {
+            TimeSpan test = Convert.ToDateTime(@bridge.reopening_date) - Convert.ToDateTime(@bridge.closing_date);
+            <tr>
+                <td>@bridge.boat_name</td>
+                <td>@bridge.closing_date</td>
+                <td>@test.Hours heures et @test.Minutes minutes.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h2>Fermetures passés</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom / Event</th>
+            <th>Date et heure Fermeture</th>
+            <th>Durée de la fermeture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bridge in tab_past)
+        {
+            TimeSpan test = Convert.ToDateTime(@bridge.reopening_date) - Convert.ToDateTime(@bridge.closing_date);
+            <tr>
+                <td>@bridge.boat_name</td>
+                <td>@bridge.closing_date</td>
+                <td>@test.Hours heures et @test.Minutes minutes.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+    
+

@@ -27,6 +27,12 @@ namespace BridgeMonitor.Controllers
             return View(bridge) ;
         }
 
+        public IActionResult AllFermeture()
+        {
+            var bridge = GetBridgeFromApi();
+            return View(bridge);
+        }
+
         public IActionResult Privacy()
         {
             return View();
