@@ -28,11 +28,14 @@
 {
     if (@bridge.closing_date.ToString() == finaldate)
     {
+        TimeSpan test = Convert.ToDateTime(@bridge.reopening_date) - Convert.ToDateTime(@bridge.closing_date);
         <p>@bridge.closing_date @bridge.closing_date.DayOfWeek</p>
         <h2>Prochaine réouverture : </h2>
         <p>@bridge.reopening_date @bridge.reopening_date.DayOfWeek</p>
         <h2>Nom du bateau / Évenement ayant causé la fermeture : </h2>
         <p>@bridge.boat_name</p>
+        <h2>Durée de la fermeture : </h2>
+        <p>@test.TotalHours heures</p>
     }
 }
 
