@@ -1,10 +1,36 @@
 ﻿@model List<BridgeModel>
 
-<h1>Liste des stations</h1>
+<h1>Prochaine fermeture : </h1>
 
-<ul>
-    @foreach (var bridge in Model)
+
+@{string finaldate = "2021-09-15T14:19:00+0200";}
+@foreach (var bridge in Model)
+{
+    var date1 = Convert.ToDateTime(DateTime.Now.ToString());
+    var date2 = Convert.ToDateTime(@bridge.closing_date);
+
+    //var test = date1.Subtract(date2);
+    int result = DateTime.Compare(date2, date1);
+
+    if (result == 1)
     {
-        <li>@bridge.closing_date</li>
+        var date3 = Convert.ToDateTime(finaldate);
+        int new_result = DateTime.Compare(date3, date2);
+
+        if (new_result == 1)
+        {
+            finaldate = @bridge.closing_date.ToString();
+        }
     }
-</ul>
+}
+
+@foreach (var bridge in Model)
+{
+    if (@bridge.closing_date.ToString() == finaldate)
+    {
+        <p>@bridge.closing_date @bridge.closing_date.DayOfWeek</p>
+    }
+}
+
+
+

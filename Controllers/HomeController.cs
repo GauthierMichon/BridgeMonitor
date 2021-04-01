@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Newtonsoft.Json;
 using BridgeMonitor.Models;
+using System.Globalization;
 
 namespace BridgeMonitor.Controllers
 {
@@ -23,7 +24,7 @@ namespace BridgeMonitor.Controllers
         public IActionResult Index()
         {
             var bridge = GetBridgeFromApi();
-            return View(bridge);
+            return View(bridge) ;
         }
 
         public IActionResult Privacy()
