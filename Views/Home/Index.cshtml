@@ -36,6 +36,24 @@
         <p>@bridge.boat_name</p>
         <h2>Durée de la fermeture : </h2>
         <p>@test.TotalHours heures</p>
+        int h = Convert.ToDateTime(@bridge.closing_date).Hour;
+        int duree = int.Parse(test.Minutes.ToString());
+        List<int> tab = new List<int>();
+
+        for (int i = 0; i < duree; i++)
+        {
+            tab.Add(i);
+        }
+
+        <h2>Risque de bouchons : </h2>
+        if (tab.Contains(7) || tab.Contains(8) || tab.Contains(9) || tab.Contains(17) || tab.Contains(18) || tab.Contains(19))
+        {
+            <p>Elevé</p>
+        }
+        else
+        {
+            <p>Faible</p>
+        }
     }
 }
 
