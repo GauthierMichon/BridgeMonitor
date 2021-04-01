@@ -30,6 +30,12 @@
     {
         <p>@bridge.closing_date @bridge.closing_date.DayOfWeek</p>
     }
+
+    if (@bridge.closing_date.ToString() == finaldate)
+    {
+        <h2>Prochaine réouverture : </h2>
+        <p>@bridge.reopening_date @bridge.reopening_date.DayOfWeek</p>
+    }
 }
 
 
